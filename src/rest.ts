@@ -31,11 +31,9 @@ type UserEmailLoginReturn = {
 };
 
 export async function login(options: LoginOptions): Promise<UserContext> {
-  console.log("user email login");
   const loginData: UserEmailLoginReturn = (await post("user.email_login", {
     form: options,
   })) as UserEmailLoginReturn;
-  console.log("authorize");
   const authData = await get("user.authenticate", {
     query: loginData,
   });
