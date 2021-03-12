@@ -8,10 +8,14 @@ import {
 } from "./types";
 import {
   Commands,
+  AddDjCommand,
   BaseCommand,
   NewSongCommand,
   VoteCommand,
   SpeakCommand,
+  UpdateStickerPlacementCommand,
+  UserJoinCommand,
+  UserLeaveCommand,
 } from "./ttfm-types";
 import { makeRoomApi } from "./room";
 import { makeUserApi } from "./user";
@@ -20,6 +24,10 @@ export function createBotApi(ws: WebsocketApi, user: UserContext): TtfmBotApi {
   const newSongEvent = Event<NewSongCommand>();
   const voteEvent = Event<VoteCommand>();
   const speakEvent = Event<SpeakCommand>();
+  const userJoinEvent = Event<UserJoinCommand>();
+  const userLeaveEvent = Event<UserLeaveCommand>();
+  const addDjEvent = Event<AddDjCommand>();
+  const updateStickersEvent = Event<UpdateStickerPlacementCommand>();
 
   let currentRoomid: null | string = null;
   let currentRoomApi: null | TtfmRoomApi = null;
@@ -39,8 +47,17 @@ export function createBotApi(ws: WebsocketApi, user: UserContext): TtfmBotApi {
         break;
 
       case Commands.UserJoin:
+        userJoinEvent.broadcast(data as UserJoinCommand);
+        break;
       case Commands.UserLeave:
+        userLeaveEvent.broadcast(data as UserLeaveCommand);
+        break;
+      case Commands.AddDj:
+        addDjEvent.broadcast(data as AddDjCommand);
+        break;
       case Commands.UpdateStickerPlacement:
+        updateStickersEvent.broadcast(data as UpdateStickerPlacementCommand);
+        break;
       default:
         console.log("Unknown command", data);
         break;
@@ -65,5 +82,9 @@ export function createBotApi(ws: WebsocketApi, user: UserContext): TtfmBotApi {
     onNewSong: newSongEvent.listen,
     onVote: voteEvent.listen,
     onSpeak: speakEvent.listen,
+    onUserJoin: userJoinEvent.listen,
+    onUserLeave: userLeaveEvent.listen,
+    onAddDj: addDjEvent.listen,
+    onUpdateStickers: updateStickersEvent.listen,
   };
 }

@@ -21,7 +21,7 @@ async function getRooms() {
   return get("room.directory_rooms");
 }
 
-type LoginOptions = {
+export type LoginOptions = {
   email: string;
   password: string;
 };
@@ -31,10 +31,14 @@ type UserEmailLoginReturn = {
 };
 
 export async function login(options: LoginOptions): Promise<UserContext> {
+  // the actual login, this'll give us userid and userauth back
   const loginData: UserEmailLoginReturn = (await post("user.email_login", {
     form: options,
   })) as UserEmailLoginReturn;
-  const authData = await get("user.authenticate", {
+  // being honest, i don't think this endpoint does anything
+  // but perhaps it sets some flags that makes us look more like a normal user
+  // which lets us get through future steps / checks easier
+  await get("user.authenticate", {
     query: loginData,
   });
   return loginData;

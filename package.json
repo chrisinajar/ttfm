@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/superagent": "^4.1.10",
+    "chalk": "^4.1.0",
     "geval": "^2.2.0",
     "lodash": "^4.17.21",
     "socket.io-client": "^4.0.0",

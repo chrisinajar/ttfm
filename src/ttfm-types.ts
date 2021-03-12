@@ -1,3 +1,9 @@
+export type LaptopStickerPlacement = {
+  top: number;
+  angle: number;
+  sticker_id: string;
+  left: number;
+};
 export type User = {
   fanofs: number;
   name: string;
@@ -73,6 +79,7 @@ export enum Commands {
   UserJoin = "registered",
   UserLeave = "deregistered",
   Speak = "speak",
+  AddDj = "add_dj",
 }
 
 export type BaseResponse = {
@@ -115,4 +122,32 @@ export type SpeakCommand = BaseCommand & {
   name: string;
   roomid: string;
   text: string;
+};
+export type UserJoinCommand = BaseCommand & {
+  command: Commands.UserJoin;
+  roomid: string;
+  user: User[];
+};
+
+export type UserLeaveCommand = BaseCommand & {
+  command: Commands.UserLeave;
+  roomid: string;
+  user: User[];
+};
+
+export type AddDjCommand = BaseCommand & {
+  djs: {
+    [key: string]: string;
+  };
+  command: Commands.AddDj;
+  user: User[];
+  roomid: string;
+  placements: LaptopStickerPlacement[];
+};
+
+export type UpdateStickerPlacementCommand = BaseCommand & {
+  command: Commands.UpdateStickerPlacement;
+  userid: string;
+  roomid: string;
+  placements: LaptopStickerPlacement[];
 };

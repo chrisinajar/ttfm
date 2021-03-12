@@ -1,8 +1,12 @@
 import type {
+  AddDjCommand,
   BaseCommand,
   NewSongCommand,
   VoteCommand,
   SpeakCommand,
+  UpdateStickerPlacementCommand,
+  UserJoinCommand,
+  UserLeaveCommand,
   RoomInfo,
   Song,
 } from "./ttfm-types";
@@ -29,12 +33,21 @@ export type TtfmBotApi = {
   onNewSong: EventHandler<NewSongCommand>;
   onVote: EventHandler<VoteCommand>;
   onSpeak: EventHandler<SpeakCommand>;
+  onUserJoin: EventHandler<UserJoinCommand>;
+  onUserLeave: EventHandler<UserLeaveCommand>;
+  onAddDj: EventHandler<AddDjCommand>;
+  onUpdateStickers: EventHandler<UpdateStickerPlacementCommand>;
 };
 // base API
-export type TtfmApiOptions = {
+type AuthOptions = {
   email: string;
   password: string;
 };
+type PreAuthOptions = {
+  userid: string;
+  userauth: string;
+};
+export type TtfmApiOptions = AuthOptions | PreAuthOptions;
 export type TtfmApi = {
   connect: (options: TtfmApiOptions) => Promise<TtfmBotApi>;
 };
