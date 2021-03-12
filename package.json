@@ -2,7 +2,7 @@
   "name": "ttfm",
   "version": "1.0.1",
   "description": "An API for turntable.fm",
-  "main": "dist/api.js",
+  "main": "dist/index.js",
   "author": "Chris \"chrisinajar\" Vickery",
   "license": "MIT",
   "dependencies": {
