@@ -1,0 +1,30 @@
+{
+  "name": "ttfm",
+  "version": "1.0.0",
+  "description": "An API for turntable.fm",
+  "main": "index.js",
+  "author": "Chris \"chrisinajar\" Vickery",
+  "license": "MIT",
+  "dependencies": {
+    "@types/superagent": "^4.1.10",
+    "geval": "^2.2.0",
+    "lodash": "^4.17.21",
+    "socket.io-client": "^4.0.0",
+    "superagent": "^6.1.0",
+    "ws": "^7.4.4"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "@types/socket.io-client": "^1.4.35",
+    "@types/ws": "^7.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.3"
+  }
+}
