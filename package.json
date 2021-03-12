@@ -1,6 +1,6 @@
 {
   "name": "ttfm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An API for turntable.fm",
   "main": "dist/index.js",
   "author": "Chris \"chrisinajar\" Vickery",
